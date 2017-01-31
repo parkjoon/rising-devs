@@ -1,5 +1,6 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
 	devtool: 'eval',
@@ -8,7 +9,7 @@ module.exports = {
 		'./src/index.js'
 	],
 	output: {
-		path: path.join(__dirname, 'dist'),
+		path: path.join(__dirname, 'build'), // Might want to change this to 'dist'.
 		filename: 'bundle.js',
 		publicPath: '/build/'
 	},
@@ -20,8 +21,10 @@ module.exports = {
 				include: path.join(__dirname, 'src')
 			},
 			{
-				test: /\.scss$/,
-				loaders: ['style-loader', 'css-loader', 'sass-loader']
+				loader: ExtractTextPlugin.extract({
+					loader: 'css-loader'
+				}),
+				test: /\.(css)$/
 			},
 			{ test: /\.svg$/, loader: 'url-loader?limit=65000&mimetype=image/svg+xml' },
 			{ test: /\.woff$/, loader: 'url-loader?limit=65000&mimetype=application/font-woff' },
@@ -30,5 +33,8 @@ module.exports = {
 			{ test: /\.eot$/, loader: 'url-loader?limit=65000&mimetype=application/vnd.ms-fontobject' },
 			{ test: /\.(png|jpg|gif|cur)$/, loader: 'url-loader?limit=8192' }
 		]
-	}
+	},
+	plugins: [
+		new ExtractTextPlugin('styles.css')
+	]
 };
