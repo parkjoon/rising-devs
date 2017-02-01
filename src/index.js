@@ -43,7 +43,7 @@ ReactDOM.render(
 	<Router history={browserHistory}>
 		<Route path='/' component={App} auth={auth}>
 			<IndexRoute component={Home} />
-			<Route path="/login" component={Login} />
+			<Route path="login" component={Login} />
 			{/* <Route path="preview_report_form/report_form_id/:report_form_id" component={FormPreview} onEnter={requireAuth} /> */}
 		</Route>
 	</Router>
