@@ -4,12 +4,6 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
-import App from './components/App';
-import AuthService from './utils/AuthService';
-import Home from './components/views/Home';
-import Login from './components/views/Login';
-import RootReducer from './reducers/root';
-
 import '../styles/vendor/bootstrap/css/bootstrap.min.css';
 import '../styles/vendor/font-awesome/css/font-awesome.min.css';
 import '../styles/vendor/animate/animate.min.css';
@@ -26,6 +20,13 @@ import '../styles/vendor/rs-plugin/css/layers.css';
 import '../styles/vendor/rs-plugin/css/navigation.css';
 import '../styles/css/skins/skin-corporate-7.css';
 import '../styles/css/custom.css';
+
+import App from './components/App';
+import AuthService from './utils/AuthService';
+import Home from './components/views/Home';
+import Login from './components/views/Login';
+import Profile from './components/views/Profile';
+import RootReducer from './reducers/root';
 
 const auth = new AuthService('cv7kliXmF2S1m36YSmpq0RdzH4JHZMWg', 'risingdevs.auth0.com'); // Move this to env file.
 
@@ -44,6 +45,7 @@ ReactDOM.render(
 		<Route path='/' component={App} auth={auth}>
 			<IndexRoute component={Home} />
 			<Route path="login" component={Login} />
+			<Route path="profile/:id" component={Profile} />
 		</Route>
 	</Router>
 </Provider>),
