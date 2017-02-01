@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 import AuthService from '../utils/AuthService';
 
@@ -26,14 +27,10 @@ export default class Header extends Component {
 											<nav>
 												<ul className="nav nav-pills" id="mainNav">
 													<li>
-														<a href="#">
-															Home
-														</a>
+														<Link to={'/'}>Home</Link>
 													</li>
 													<li>
-														<a href="#" onClick={() => this.props.auth.login()}>
-															Login
-														</a>
+														<a href="javascript:;" onClick={() => this.props.auth.login()}>Login</a>
 													</li>
 												</ul>
 											</nav>
