@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { browserHistory, IndexRoute, Route, Router } from 'react-router';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
@@ -31,21 +31,20 @@ const auth = new AuthService('cv7kliXmF2S1m36YSmpq0RdzH4JHZMWg', 'risingdevs.aut
 
 // Validate authentication for private routes.
 const requireAuth = (nextState, replace) => {
-  if(!auth.loggedIn()) {
-    replace({ pathname: '/login' });
-  }
+	if(!auth.loggedIn()) {
+		replace({ pathname: '/login' });
+	}
 }
 
 const store = createStore(RootReducer);
 
 ReactDOM.render(
-<Provider store={store}>
+(<Provider store={store}>
 	<Router history={browserHistory}>
 		<Route path='/' component={App} auth={auth}>
 			<IndexRoute component={Home} />
 			<Route path="login" component={Login} />
-			{/* <Route path="preview_report_form/report_form_id/:report_form_id" component={FormPreview} onEnter={requireAuth} /> */}
 		</Route>
 	</Router>
-</Provider>,
-document.getElementById('react-root'));
+</Provider>),
+document.getElementById('root'));
