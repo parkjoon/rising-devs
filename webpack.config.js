@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const DotenvPlugin = require('webpack-dotenv-plugin');
 
 module.exports = {
 	devtool: 'eval',
@@ -35,6 +36,10 @@ module.exports = {
 		]
 	},
 	plugins: [
-		new ExtractTextPlugin('styles.css')
+		new ExtractTextPlugin('styles.css'),
+		// new DotenvPlugin({
+    //   sample: './.env.example',
+    //   path: './.env'
+    // })
 	]
 };
