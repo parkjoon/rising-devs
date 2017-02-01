@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 
+import AuthService from '../utils/AuthService';
+
 export default class Header extends Component {
 	render() {
 		return (
-      <header id="header" className="header-narrow header-semi-transparent header-transparent-sticky-deactive header-transparent-bottom-border" data-plugin-options='{"stickyEnabled": true, "stickyEnableOnBoxed": true, "stickyEnableOnMobile": true, "stickyStartAt": 1, "stickySetTop": "1"}'>
+			<header id="header" className="header-narrow header-semi-transparent header-transparent-sticky-deactive header-transparent-bottom-border" data-plugin-options='{"stickyEnabled": true, "stickyEnableOnBoxed": true, "stickyEnableOnMobile": true, "stickyStartAt": 1, "stickySetTop": "1"}'>
 				<div className="header-body">
 					<div className="header-container container">
 						<div className="header-row">
 							<div className="header-column">
 								<div className="header-logo">
-									<a href="index.html">
+									<a href="#">
 										<img alt="Porto" width="82" height="40" src="../../styles/img/logo-default-slim-dark.png" />
 									</a>
 								</div>
@@ -29,7 +31,7 @@ export default class Header extends Component {
 														</a>
 													</li>
 													<li>
-														<a href="#">
+														<a href="#" onClick={() => this.props.auth.login()}>
 															Login
 														</a>
 													</li>

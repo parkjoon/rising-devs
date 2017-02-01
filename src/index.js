@@ -23,8 +23,8 @@ import '../styles/css/custom.css';
 
 import App from './components/App';
 import AuthService from './utils/AuthService';
+import EditProfile from './components/views/EditProfile';
 import Home from './components/views/Home';
-import Login from './components/views/Login';
 import Profile from './components/views/Profile';
 import RootReducer from './reducers/root';
 
@@ -33,7 +33,7 @@ const auth = new AuthService('cv7kliXmF2S1m36YSmpq0RdzH4JHZMWg', 'risingdevs.aut
 // Validate authentication for private routes.
 const requireAuth = (nextState, replace) => {
 	if(!auth.loggedIn()) {
-		replace({ pathname: '/login' });
+		replace({ pathname: '/' });
 	}
 }
 
@@ -44,8 +44,8 @@ ReactDOM.render(
 	<Router history={browserHistory}>
 		<Route path='/' component={App} auth={auth}>
 			<IndexRoute component={Home} />
-			<Route path="login" component={Login} />
-			<Route path="profile/:id" component={Profile} />
+			<Route path="/profile/:id" component={Profile} />
+			<Route path="/profile/edit/:id" component={EditProfile} onEnter={requireAuth} />
 		</Route>
 	</Router>
 </Provider>),
