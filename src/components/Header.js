@@ -27,7 +27,7 @@ export default class Header extends Component {
 											<nav>
 												<ul className="nav nav-pills" id="mainNav">
 													<li>
-														<Link to={'/'}>Home</Link>
+														<Link to='/'>Home</Link>
 													</li>
 													<li>
 														<a href="javascript:;" onClick={() => this.props.auth.login()}>Login</a>

@@ -24,7 +24,9 @@ import '../styles/css/custom.css';
 import App from './components/App';
 import AuthService from './utils/AuthService';
 import EditProfile from './components/views/EditProfile';
+import Freelancers from './components/views/Freelancers';
 import Home from './components/views/Home';
+import Jobs from './components/views/Jobs';
 import Profile from './components/views/Profile';
 import RootReducer from './reducers/root';
 
@@ -35,7 +37,7 @@ const requireAuth = (nextState, replace) => {
 	if(!auth.loggedIn()) {
 		replace({ pathname: '/' });
 	}
-}
+};
 
 const store = createStore(RootReducer);
 
@@ -44,6 +46,11 @@ ReactDOM.render(
 	<Router history={browserHistory}>
 		<Route path='/' component={App} auth={auth}>
 			<IndexRoute component={Home} />
+
+			<Route path="/freelancers" component={Freelancers} />
+
+			<Route path="/jobs" component={Jobs} />
+
 			<Route path="/profile/:id" component={Profile} />
 			<Route path="/profile/edit/:id" component={EditProfile} onEnter={requireAuth} />
 		</Route>
