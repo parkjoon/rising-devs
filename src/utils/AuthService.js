@@ -64,7 +64,7 @@ export default class AuthService {
 		// Saves profile data to local storage
 		localStorage.setItem('profile', JSON.stringify(profile));
 		// Triggers profile_updated event to update the UI
-		this.emit('profile_updated', profile);
+		// this.emit('profile_updated', profile);
 	}
 
 	getProfile() {

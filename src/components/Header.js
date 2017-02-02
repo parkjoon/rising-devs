@@ -4,6 +4,22 @@ import { Link } from 'react-router';
 import AuthService from '../utils/AuthService';
 
 export default class Header extends Component {
+	renderAuthButton() {
+		if(this.props.auth.loggedIn()) {
+			return (
+				<li>
+					<Link to='/' onClick={() => this.props.auth.logout()}>Logout</Link>
+				</li>
+			);
+		}
+
+		return (
+			<li>
+				<a href="javascript:;" onClick={() => this.props.auth.login()}>Login</a>
+			</li>
+		);
+	}
+
 	render() {
 		return (
 			<header id="header" className="header-narrow header-semi-transparent header-transparent-sticky-deactive header-transparent-bottom-border" data-plugin-options='{"stickyEnabled": true, "stickyEnableOnBoxed": true, "stickyEnableOnMobile": true, "stickyStartAt": 1, "stickySetTop": "1"}'>
@@ -29,9 +45,7 @@ export default class Header extends Component {
 													<li>
 														<Link to='/'>Home</Link>
 													</li>
-													<li>
-														<a href="javascript:;" onClick={() => this.props.auth.login()}>Login</a>
-													</li>
+													{this.renderAuthButton()}
 												</ul>
 											</nav>
 										</div>
