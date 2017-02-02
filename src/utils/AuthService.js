@@ -1,6 +1,8 @@
 import Auth0Lock from 'auth0-lock';
 import { browserHistory } from 'react-router';
 
+import { isTokenExpired } from './jwtHelper';
+
 export default class AuthService {
 	constructor(clientId, domain) {
 		// Configure Auth0
@@ -21,6 +23,15 @@ export default class AuthService {
 		this.setToken(authResult.idToken);
 		// navigate to the home route
 		browserHistory.replace('/');
+		// Async loads the user profile data
+		this.lock.getProfile(authResult.idToken, (error, profile) => {
+			if(error) {
+				console.log('Error loading the Profile', error);
+			}
+			else {
+				this.setProfile(profile);
+			}
+		});
 	}
 
 	login() {
@@ -30,7 +41,8 @@ export default class AuthService {
 
 	loggedIn() {
 		// Checks if there is a saved token and it's still valid
-		return !!this.getToken();
+		const token = this.getToken();
+		return !!token && !isTokenExpired(token);
 	}
 
 	setToken(idToken) {
@@ -46,5 +58,18 @@ export default class AuthService {
 	logout() {
 		// Clear user token and profile data from local storage
 		localStorage.removeItem('id_token');
+	}
+
+	setProfile(profile) {
+		// Saves profile data to local storage
+		localStorage.setItem('profile', JSON.stringify(profile));
+		// Triggers profile_updated event to update the UI
+		this.emit('profile_updated', profile);
+	}
+
+	getProfile() {
+		// Retrieves the profile data from local storage
+		const profile = localStorage.getItem('profile');
+		return profile ? JSON.parse(localStorage.profile) : {};
 	}
 }
