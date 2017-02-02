@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
 
-// export default combineReducers({
-// 	socket,
-// 	userAuthentication
-// });
+import jobPosts from './jobPosts';
 
-export default () => {}
+export default combineReducers({
+	// socket,
+	// userAuthentication
+	jobPosts
+});

@@ -1,6 +1,26 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class Jobs extends Component {
+import { getJobPosts } from '../../utils/api';
+import { setJobPosts } from '../../actions/jobPosts';
+
+class Jobs extends Component {
+	componentDidMount() {
+		getJobPosts()
+			.then(res => {
+				this.props.setJobPosts(res.data.jobs);
+			})
+			.catch(error => {
+				console.log(error);
+			});
+	}
+
+	renderJobPostPreviews() {
+		return this.props.jobPosts.map(jobPost => {
+			return <li key={jobPost.id} className="list-group-item">{jobPost.title}</li>;
+		});
+	}
+
 	render() {
 		return (
 			<div>
@@ -10,9 +30,7 @@ export default class Jobs extends Component {
 						<div className="panel-heading">Jobs</div>
 						<div className="panel-body">
 							<ul className="list-group">
-								<li className="list-group-item">First item</li>
-								<li className="list-group-item">Second item</li>
-								<li className="list-group-item">Third item</li>
+								{this.renderJobPostPreviews()}
 							</ul>
 						</div>
 					</div>
@@ -21,3 +39,20 @@ export default class Jobs extends Component {
 		);
 	}
 }
+
+function mapStateToProps(state) {
+	return {
+		jobPosts: state.jobPosts
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		setJobPosts: jobPosts => dispatch(setJobPosts(jobPosts))
+	};
+}
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Jobs);
