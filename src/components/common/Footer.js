@@ -72,7 +72,6 @@ export default class Footer extends Component {
 								<nav id="sub-menu">
 									<ul>
 										<li><a href="page-faq.html">FAQ</a></li>
-										<li><a href="sitemap.html">Sitemap</a></li>
 										<li><a href="contact-us.html">Contact</a></li>
 									</ul>
 								</nav>

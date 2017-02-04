@@ -29,6 +29,7 @@ import Freelancers from './components/views/Freelancers/Freelancers';
 import Home from './components/views/Home/Home';
 import HowItWorks from './components/views/HowItWorks/HowItWorks';
 import Jobs from './components/views/Jobs/Jobs';
+import NotFound from './components/views/NotFound/NotFound';
 import Profile from './components/views/Profile/Profile';
 import RootReducer from './reducers/root';
 import SignUp from './components/views/SignUp/SignUp';
@@ -58,10 +59,12 @@ ReactDOM.render(
 
 			<Route path="/jobs" component={Jobs} />
 
-			<Route path="/profile/:id" component={Profile} />
-			<Route path="/profile/edit/:id" component={EditProfile} onEnter={requireAuth} />
+			<Route path="/profile/:username" component={Profile} />
+			<Route path="/profile/edit/:username" component={EditProfile} onEnter={requireAuth} />
 
 			<Route path="/signup" component={SignUp} />
+
+			<Route path="*" component={NotFound} />
 		</Route>
 	</Router>
 </Provider>),

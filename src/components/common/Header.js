@@ -4,6 +4,24 @@ import { Link } from 'react-router';
 import AuthService from '../../utils/AuthService';
 
 export default class Header extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			profile: this.props.auth.getProfile()
+		};
+	}
+
+	renderUserButton() {
+		if(this.props.auth.loggedIn()) {
+			return (
+				<li>
+					<Link to={`/profile/edit/${this.state.profile.username}`}>Welcome, {this.state.profile.username}</Link>
+				</li>
+			);
+		}
+	}
+
 	renderSignUpButton() {
 		if(!this.props.auth.loggedIn()) {
 			return (
@@ -71,6 +89,7 @@ export default class Header extends Component {
 													<li>
 														<Link to='/'>Home</Link>
 													</li>
+													{this.renderUserButton()}
 													{this.renderSignUpButton()}
 													{this.renderAuthButton()}
 												</ul>

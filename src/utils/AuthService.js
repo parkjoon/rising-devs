@@ -39,7 +39,7 @@ export default class AuthService {
 		this.lock.show();
 	}
 
-	signup(email, username, password) {
+	signup(username, email, password) {
 		this.auth0.redirect.signupAndLogin({
 			connection: 'Username-Password-Authentication',
 			username,
@@ -78,7 +78,7 @@ export default class AuthService {
 		// Saves profile data to local storage
 		localStorage.setItem('profile', JSON.stringify(profile));
 		// Triggers profile_updated event to update the UI
-		// this.emit('profile_updated', profile);
+		// this.emit('profile_updated', profile); // ?
 	}
 
 	getProfile() {
