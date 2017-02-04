@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import Footer from './common/Footer';
 import Header from './common/Header';
+import { setPartialProfile } from '../actions/profile';
 
-export default class App extends Component {
+class App extends Component {
+	componentDidMount() {
+		this.props.setPartialProfile(this.props.route.auth.getProfile());
+	}
+
 	render() {
 		return (
 			<div className="body">
@@ -16,3 +22,14 @@ export default class App extends Component {
 		);
 	}
 }
+
+function mapDispatchToProps(dispatch) {
+	return {
+		setPartialProfile: profile => dispatch(setPartialProfile(profile))
+	};
+}
+
+export default connect(
+	null,
+	mapDispatchToProps
+)(App);
