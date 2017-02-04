@@ -1,6 +1,6 @@
 import actions from '../utils/actions';
 
-export default function profile(state = [], action) {
+export default function profile(state = {}, action) {
 	switch(action.type) {
 		case actions.SET_PROFILE:
 			return action.profile;

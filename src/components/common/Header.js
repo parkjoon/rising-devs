@@ -1,22 +1,24 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { isEqual } from 'lodash';
 import { Link } from 'react-router';
 
 import AuthService from '../../utils/AuthService';
+import { setPartialProfile } from '../../actions/profile';
 
-export default class Header extends Component {
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			profile: this.props.auth.getProfile()
-		};
+class Header extends Component {
+	componentDidMount() {
+		const profile = this.props.auth.getProfile();
+		if(!isEqual(profile, {})) {
+			this.props.setPartialProfile(profile);
+		}
 	}
 
 	renderUserButton() {
 		if(this.props.auth.loggedIn()) {
 			return (
 				<li>
-					<Link to={`/profile/edit/${this.state.profile.username}`}>Welcome, {this.state.profile.username}</Link>
+					<Link to={`/profile/edit/${this.props.profile.username}`}>Welcome, {this.props.profile.username}</Link>
 				</li>
 			);
 		}
@@ -105,3 +107,20 @@ export default class Header extends Component {
 		);
 	}
 }
+
+function mapStateToProps(state) {
+	return {
+		profile: state.profile
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		setPartialProfile: profile => dispatch(setPartialProfile(profile))
+	};
+}
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Header);
