@@ -56,7 +56,7 @@ export default class EmployerForm extends Component {
 											<label htmlFor="pwd">Password:</label>
 											<input type="password" className="form-control" id="pwd" value={this.state.password} onChange={e => this.updateFormValue('password', e.target.value) } />
 										</div>
-										<button type="submit" className="btn btn-default" onClick={e => this.signUp(e)}>Submit</button>
+										<button className="btn btn-default" onClick={e => this.signUp(e)}>Submit</button>
 									</form>
 								</div>
 							</div>

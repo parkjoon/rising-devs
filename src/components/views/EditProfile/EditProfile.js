@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { updateProfile } from '../../../utils/api';
+
 class EditProfile extends Component {
 	constructor(props) {
 		super(props);
@@ -27,6 +29,18 @@ class EditProfile extends Component {
 		});
 	}
 
+	onEditProfileSaveClick(e) {
+		e.preventDefault();
+		updateProfile(this.state.profile);
+	}
+
+	onEditProfileCancelClick(e) {
+		e.preventDefault();
+		this.setState({
+			profile: this.props.profile
+		});
+	}
+
 	render() {
 		return (
 			<div>
@@ -42,8 +56,8 @@ class EditProfile extends Component {
 											<label htmlFor="username">Username</label>
 											<input type="text" className="form-control" id="username" value={this.state.profile.username} onChange={e => this.updateProfileValue('username', e.target.value)} />
 										</div>
-										<button type="submit" className="btn btn-default">Save</button>
-										<button type="submit" className="btn btn-default">Cancel</button>
+										<button className="btn btn-default" onClick={e => this.onEditProfileSaveClick(e)}>Save</button>
+										<button className="btn btn-default" onClick={e => this.onEditProfileCancelClick(e)}>Cancel</button>
 									</form>
 								</div>
 							</div>
