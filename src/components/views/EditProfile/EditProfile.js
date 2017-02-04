@@ -6,7 +6,9 @@ class EditProfile extends Component {
 		super(props);
 
 		this.state = {
-			profile: props.profile
+			profile: {
+				username: ''
+			}
 		};
 	}
 
@@ -26,7 +28,6 @@ class EditProfile extends Component {
 	}
 
 	render() {
-		console.log(this.state.profile);
 		return (
 			<div>
 				<div style={{height: '100px'}}></div>
@@ -38,12 +39,8 @@ class EditProfile extends Component {
 								<div className="col-md-3" style={{marginLeft: '38%'}}>
 									<form>
 										<div className="form-group">
-											<label htmlFor="firstname">First Name</label>
-											<input type="text" className="form-control" id="firstname" value={this.state.profile.firstName} onChange={e => this.updateProfileValue('firstName', e.target.value)} />
-										</div>
-										<div className="form-group">
-											<label htmlFor="lastname">Last Name</label>
-											<input type="text" className="form-control" id="lastname" value={this.state.profile.lastName} onChange={e => this.updateProfileValue('lastName', e.target.value)} />
+											<label htmlFor="username">Username</label>
+											<input type="text" className="form-control" id="username" value={this.state.profile.username} onChange={e => this.updateProfileValue('username', e.target.value)} />
 										</div>
 										<button type="submit" className="btn btn-default">Save</button>
 										<button type="submit" className="btn btn-default">Cancel</button>
