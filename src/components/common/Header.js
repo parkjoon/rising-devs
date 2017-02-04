@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 
-import AuthService from '../utils/AuthService';
+import AuthService from '../../utils/AuthService';
 
 export default class Header extends Component {
+	renderSignUpButton() {
+		if(!this.props.auth.loggedIn()) {
+			return (
+				<li>
+					<Link to='/signup'>Sign Up</Link>
+				</li>
+			);
+		}
+	}
+
 	renderAuthButton() {
 		if(this.props.auth.loggedIn()) {
 			return (
@@ -28,9 +38,25 @@ export default class Header extends Component {
 						<div className="header-row">
 							<div className="header-column">
 								<div className="header-logo">
-									<a href="#">
-										<img alt="Porto" width="82" height="40" src="../../styles/img/logo-default-slim-dark.png" />
-									</a>
+									<Link to='/'><img alt="Porto" width="82" height="40" src="../../styles/img/logo-default-slim-dark.png" /></Link>
+								</div>
+							</div>
+							<div className="header-column">
+								<div className="header-row">
+									<div className="header-nav header-nav-dark-dropdown">
+										<div className="header-nav-main header-nav-main-square header-nav-main-effect-2 header-nav-main-sub-effect-1 collapse">
+											<nav>
+												<ul className="nav nav-pills" id="mainNav2">
+													<li>
+														<Link to='/howitworks'>How It Works</Link>
+													</li>
+													<li>
+														<Link to='/faq'>FAQ</Link>
+													</li>
+												</ul>
+											</nav>
+										</div>
+									</div>
 								</div>
 							</div>
 							<div className="header-column">
@@ -45,6 +71,7 @@ export default class Header extends Component {
 													<li>
 														<Link to='/'>Home</Link>
 													</li>
+													{this.renderSignUpButton()}
 													{this.renderAuthButton()}
 												</ul>
 											</nav>

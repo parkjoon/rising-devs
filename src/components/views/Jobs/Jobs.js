@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { getJobPosts } from '../../utils/api';
-import { setJobPosts } from '../../actions/jobPosts';
+import { getJobPosts } from '../../../utils/api';
+import { setJobPosts } from '../../../actions/jobPosts';
 
 class Jobs extends Component {
 	componentDidMount() {

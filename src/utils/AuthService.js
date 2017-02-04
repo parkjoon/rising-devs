@@ -14,8 +14,8 @@ export default class AuthService {
 		});
 		// Add callback for lock `authenticated` event
 		this.lock.on('authenticated', this._doAuthentication.bind(this));
-		// binds login functions to keep this context
 		this.login = this.login.bind(this);
+		this.signup = this.signup.bind(this);
 	}
 
 	_doAuthentication(authResult) {
@@ -38,6 +38,20 @@ export default class AuthService {
 		// Call the show method to display the widget.
 		this.lock.show();
 	}
+
+	signup(email, username, password) {
+		this.auth0.redirect.signupAndLogin({
+			connection: 'Username-Password-Authentication',
+			username,
+			email,
+			password,
+		}, err => {
+			if(err) {
+				alert('Error: ' + err.description);
+			}
+		});
+	}
+
 
 	loggedIn() {
 		// Checks if there is a saved token and it's still valid

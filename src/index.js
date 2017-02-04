@@ -23,12 +23,15 @@ import '../styles/css/custom.css';
 
 import App from './components/App';
 import AuthService from './utils/AuthService';
-import EditProfile from './components/views/EditProfile';
-import Freelancers from './components/views/Freelancers';
-import Home from './components/views/Home';
-import Jobs from './components/views/Jobs';
-import Profile from './components/views/Profile';
+import EditProfile from './components/views/EditProfile/EditProfile';
+import FAQ from './components/views/FAQ/FAQ';
+import Freelancers from './components/views/Freelancers/Freelancers';
+import Home from './components/views/Home/Home';
+import HowItWorks from './components/views/HowItWorks/HowItWorks';
+import Jobs from './components/views/Jobs/Jobs';
+import Profile from './components/views/Profile/Profile';
 import RootReducer from './reducers/root';
+import SignUp from './components/views/SignUp/SignUp';
 
 const auth = new AuthService('cv7kliXmF2S1m36YSmpq0RdzH4JHZMWg', 'risingdevs.auth0.com'); // Move this to env file.
 
@@ -47,12 +50,18 @@ ReactDOM.render(
 		<Route path='/' component={App} auth={auth}>
 			<IndexRoute component={Home} />
 
+			<Route path="/faq" component={FAQ} />
+
 			<Route path="/freelancers" component={Freelancers} />
+
+			<Route path="/howitworks" component={HowItWorks} />
 
 			<Route path="/jobs" component={Jobs} />
 
 			<Route path="/profile/:id" component={Profile} />
 			<Route path="/profile/edit/:id" component={EditProfile} onEnter={requireAuth} />
+
+			<Route path="/signup" component={SignUp} />
 		</Route>
 	</Router>
 </Provider>),
