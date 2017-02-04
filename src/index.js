@@ -43,7 +43,7 @@ const requireAuth = (nextState, replace) => {
 	}
 };
 
-const store = createStore(RootReducer);
+export const store = createStore(RootReducer);
 
 ReactDOM.render(
 (<Provider store={store}>

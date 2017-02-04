@@ -2,6 +2,8 @@ import Auth0Lock from 'auth0-lock';
 import { browserHistory } from 'react-router';
 
 import { isTokenExpired } from './jwtHelper';
+import { setPartialProfile } from '../actions/profile';
+import { store } from '../index';
 
 export default class AuthService {
 	constructor(clientId, domain) {
@@ -30,6 +32,7 @@ export default class AuthService {
 			}
 			else {
 				this.setProfile(profile);
+				store.dispatch(setPartialProfile(profile));
 			}
 		});
 	}
@@ -47,7 +50,7 @@ export default class AuthService {
 			password,
 		}, err => {
 			if(err) {
-				alert('Error: ' + err.description);
+				alert('Error:', err.description);
 			}
 		});
 	}
@@ -72,6 +75,7 @@ export default class AuthService {
 	logout() {
 		// Clear user token and profile data from local storage
 		localStorage.removeItem('id_token');
+		localStorage.removeItem('profile');
 	}
 
 	setProfile(profile) {

@@ -7,13 +7,6 @@ import AuthService from '../../utils/AuthService';
 import { setPartialProfile } from '../../actions/profile';
 
 class Header extends Component {
-	componentDidMount() {
-		const profile = this.props.auth.getProfile();
-		if(!isEqual(profile, {})) {
-			this.props.setPartialProfile(profile);
-		}
-	}
-
 	renderUserButton() {
 		if(this.props.auth.loggedIn()) {
 			return (
@@ -38,7 +31,10 @@ class Header extends Component {
 		if(this.props.auth.loggedIn()) {
 			return (
 				<li>
-					<Link to='/' onClick={() => this.props.auth.logout()}>Logout</Link>
+					<a href="javascript:;" onClick={() => {
+						window.location = '/';
+						this.props.auth.logout();
+					}}>Logout</a>
 				</li>
 			);
 		}
