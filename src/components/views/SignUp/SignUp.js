@@ -19,9 +19,9 @@ export default class SignUp extends Component {
 			case SignUpViews.SELECT_ACCOUNT_TYPE:
 				return <SelectAccountType changeView={view => this.setState({ view })} />;
 			case SignUpViews.FREELANCER_FORM:
-				return <FreelancerForm changeView={view => this.setState({ view })} />;
+				return <FreelancerForm changeView={view => this.setState({ view })} auth={this.props.auth} />;
 			case SignUpViews.EMPLOYER_FORM:
-				return <EmployerForm changeView={view => this.setState({ view })} />;
+				return <EmployerForm changeView={view => this.setState({ view })} auth={this.props.auth} />;
 			default:
 				return <div>{'UNRECOGNIZED SIGNUP VIEW!'}</div>;
 		}
