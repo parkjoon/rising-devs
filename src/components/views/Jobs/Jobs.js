@@ -7,12 +7,12 @@ import { setJobPosts } from '../../../actions/jobPosts';
 class Jobs extends Component {
 	componentDidMount() {
 		getJobPosts()
-			.then(res => {
-				this.props.setJobPosts(res.data.jobs);
-			})
-			.catch(error => {
-				console.log(error);
-			});
+		.then(res => {
+			this.props.setJobPosts(res.data.jobs);
+		})
+		.catch(error => {
+			console.log(error);
+		});
 	}
 
 	renderJobPostPreviews() {
