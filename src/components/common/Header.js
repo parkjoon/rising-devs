@@ -43,9 +43,6 @@ class Header extends Component {
 	}
 
 	render() {
-		console.log('Rendering Header with profile:', this.props.profile);
-		console.log('loggedIn:', this.props.auth.loggedIn());
-
 		return (
 			<header id="header" className="header-narrow header-semi-transparent header-transparent-sticky-deactive header-transparent-bottom-border" data-plugin-options='{"stickyEnabled": true, "stickyEnableOnBoxed": true, "stickyEnableOnMobile": true, "stickyStartAt": 1, "stickySetTop": "1"}'>
 				<div className="header-body">
