@@ -33,6 +33,7 @@ import NotFound from './components/views/NotFound/NotFound';
 import Profile from './components/views/Profile/Profile';
 import RootReducer from './reducers/root';
 import SignUp from './components/views/SignUp/SignUp';
+import UserHome from './components/views/UserHome/UserHome';
 
 const auth = new AuthService('cv7kliXmF2S1m36YSmpq0RdzH4JHZMWg', 'risingdevs.auth0.com'); // Move this to env file.
 
@@ -54,6 +55,8 @@ ReactDOM.render(
 			<Route path="/faq" component={FAQ} />
 
 			<Route path="/freelancers" component={Freelancers} />
+
+			<Route path="/home" component={UserHome} onEnter={requireAuth} />
 
 			<Route path="/howitworks" component={HowItWorks} />
 
