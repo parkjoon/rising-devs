@@ -18,6 +18,7 @@ import '../styles/css/theme-shop.css';
 import '../styles/vendor/rs-plugin/css/settings.css';
 import '../styles/vendor/rs-plugin/css/layers.css';
 import '../styles/vendor/rs-plugin/css/navigation.css';
+import '../styles/css/skins/default.css';
 import '../styles/css/skins/skin-corporate-7.css';
 import '../styles/css/custom.css';
 

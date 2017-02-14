@@ -6,8 +6,14 @@ import FreelancerHome from './Freelancer/FreelancerHome';
 
 class UserHome extends Component {
 	render() {
-		console.log(this.props);
-		return <div></div>;
+		if(!this.props.profile.user_metadata) {
+			return <div>NO PROFILE</div>;
+		}
+
+		if(this.props.profile.user_metadata.type == 'freelancer') {
+			return <FreelancerHome />;
+		}
+		return <EmployerHome />;
 	}
 }
 
@@ -16,12 +22,6 @@ function mapStateToProps(state) {
 		profile: state.profile
 	};
 }
-
-// function mapDispatchToProps(dispatch) {
-// 	return {
-// 		setJobPosts: jobPosts => dispatch(setJobPosts(jobPosts))
-// 	};
-// }
 
 export default connect(
 	mapStateToProps,
